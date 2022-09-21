@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "route4326",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ -73.982021077589081, 40.767779846311939 ], [ -73.986676445826475, 40.761621466441838 ], [ -73.983672458839564, 40.760416153902689 ], [ -73.984622515716453, 40.759252987502101 ], [ -73.981929512139459, 40.758090278297594 ] ] ] } }
+]
+}
