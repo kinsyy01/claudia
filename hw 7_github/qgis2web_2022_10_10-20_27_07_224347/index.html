@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+        <style>
+        #map {
+            width: 1522px;
+            height: 901px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <script src="data/njcounties_3424blwlvltotal_naturalbrks_0.js"></script>
+        <script src="data/Known_Contaminated_Site_List_for_New_Jersey_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[38.74674122870832,-77.07066704872493],[41.355048012252965,-71.313147669978]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_njcounties_3424blwlvltotal_naturalbrks_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATEFP'] !== null ? autolinker.link(feature.properties['STATEFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYFP'] !== null ? autolinker.link(feature.properties['COUNTYFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYNS'] !== null ? autolinker.link(feature.properties['COUNTYNS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOID'] !== null ? autolinker.link(feature.properties['GEOID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMELSAD'] !== null ? autolinker.link(feature.properties['NAMELSAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LSAD'] !== null ? autolinker.link(feature.properties['LSAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLASSFP'] !== null ? autolinker.link(feature.properties['CLASSFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MTFCC'] !== null ? autolinker.link(feature.properties['MTFCC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CSAFP'] !== null ? autolinker.link(feature.properties['CSAFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CBSAFP'] !== null ? autolinker.link(feature.properties['CBSAFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['METDIVFP'] !== null ? autolinker.link(feature.properties['METDIVFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FUNCSTAT'] !== null ? autolinker.link(feature.properties['FUNCSTAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALAND'] !== null ? autolinker.link(feature.properties['ALAND'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AWATER'] !== null ? autolinker.link(feature.properties['AWATER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INTPTLAT'] !== null ? autolinker.link(feature.properties['INTPTLAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INTPTLON'] !== null ? autolinker.link(feature.properties['INTPTLON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Poverty/Tt'] !== null ? autolinker.link(feature.properties['Poverty/Tt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['blwpvt/pop'] !== null ? autolinker.link(feature.properties['blwpvt/pop'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACSST5Y2020.S1701-Data-clean_COUNTY'] !== null ? autolinker.link(feature.properties['ACSST5Y2020.S1701-Data-clean_COUNTY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACSST5Y2020.S1701-Data-clean_DP05_0001E'] !== null ? autolinker.link(feature.properties['ACSST5Y2020.S1701-Data-clean_DP05_0001E'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACSST5Y2020.S1701-Data-clean_S1701_C02_001E'] !== null ? autolinker.link(feature.properties['ACSST5Y2020.S1701-Data-clean_S1701_C02_001E'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_njcounties_3424blwlvltotal_naturalbrks_0_0(feature) {
+            if (feature.properties['blwpvt/pop'] >= 4.000000 && feature.properties['blwpvt/pop'] <= 5.000000 ) {
+                return {
+                pane: 'pane_njcounties_3424blwlvltotal_naturalbrks_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,251,253,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['blwpvt/pop'] >= 5.000000 && feature.properties['blwpvt/pop'] <= 7.000000 ) {
+                return {
+                pane: 'pane_njcounties_3424blwlvltotal_naturalbrks_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(220,219,236,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['blwpvt/pop'] >= 7.000000 && feature.properties['blwpvt/pop'] <= 11.000000 ) {
+                return {
+                pane: 'pane_njcounties_3424blwlvltotal_naturalbrks_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(163,159,203,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['blwpvt/pop'] >= 11.000000 && feature.properties['blwpvt/pop'] <= 13.000000 ) {
+                return {
+                pane: 'pane_njcounties_3424blwlvltotal_naturalbrks_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(106,81,163,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['blwpvt/pop'] >= 13.000000 && feature.properties['blwpvt/pop'] <= 15.000000 ) {
+                return {
+                pane: 'pane_njcounties_3424blwlvltotal_naturalbrks_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(63,0,125,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_njcounties_3424blwlvltotal_naturalbrks_0');
+        map.getPane('pane_njcounties_3424blwlvltotal_naturalbrks_0').style.zIndex = 400;
+        map.getPane('pane_njcounties_3424blwlvltotal_naturalbrks_0').style['mix-blend-mode'] = 'normal';
+        var layer_njcounties_3424blwlvltotal_naturalbrks_0 = new L.geoJson(json_njcounties_3424blwlvltotal_naturalbrks_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_njcounties_3424blwlvltotal_naturalbrks_0',
+            layerName: 'layer_njcounties_3424blwlvltotal_naturalbrks_0',
+            pane: 'pane_njcounties_3424blwlvltotal_naturalbrks_0',
+            onEachFeature: pop_njcounties_3424blwlvltotal_naturalbrks_0,
+            style: style_njcounties_3424blwlvltotal_naturalbrks_0_0,
+        });
+        bounds_group.addLayer(layer_njcounties_3424blwlvltotal_naturalbrks_0);
+        map.addLayer(layer_njcounties_3424blwlvltotal_naturalbrks_0);
+        function pop_Known_Contaminated_Site_List_for_New_Jersey_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['X'] !== null ? autolinker.link(feature.properties['X'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Y'] !== null ? autolinker.link(feature.properties['Y'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SITE_ID'] !== null ? autolinker.link(feature.properties['SITE_ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PI_NAME'] !== null ? autolinker.link(feature.properties['PI_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADDRESS'] !== null ? autolinker.link(feature.properties['ADDRESS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PI_NUMBER'] !== null ? autolinker.link(feature.properties['PI_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LEAD'] !== null ? autolinker.link(feature.properties['LEAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATUS'] !== null ? autolinker.link(feature.properties['STATUS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REM_LEVEL'] !== null ? autolinker.link(feature.properties['REM_LEVEL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CEA_STATUS'] !== null ? autolinker.link(feature.properties['CEA_STATUS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CATEGORY</th>\
+                        <td>' + (feature.properties['CATEGORY'] !== null ? autolinker.link(feature.properties['CATEGORY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTY'] !== null ? autolinker.link(feature.properties['COUNTY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Known_Contaminated_Site_List_for_New_Jersey_1_0(feature) {
+            if (feature.properties['CATEGORY'] >= 0.000000 && feature.properties['CATEGORY'] <= 1.000000 ) {
+                return {
+                pane: 'pane_Known_Contaminated_Site_List_for_New_Jersey_1',
+                interactive: true,
+            }
+            }
+            if (feature.properties['CATEGORY'] >= 1.000000 && feature.properties['CATEGORY'] <= 2.000000 ) {
+                return {
+                pane: 'pane_Known_Contaminated_Site_List_for_New_Jersey_1',
+                interactive: true,
+            }
+            }
+            if (feature.properties['CATEGORY'] >= 2.000000 && feature.properties['CATEGORY'] <= 3.000000 ) {
+                return {
+                pane: 'pane_Known_Contaminated_Site_List_for_New_Jersey_1',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Known_Contaminated_Site_List_for_New_Jersey_1');
+        map.getPane('pane_Known_Contaminated_Site_List_for_New_Jersey_1').style.zIndex = 401;
+        map.getPane('pane_Known_Contaminated_Site_List_for_New_Jersey_1').style['mix-blend-mode'] = 'normal';
+        var layer_Known_Contaminated_Site_List_for_New_Jersey_1 = new L.geoJson(json_Known_Contaminated_Site_List_for_New_Jersey_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Known_Contaminated_Site_List_for_New_Jersey_1',
+            layerName: 'layer_Known_Contaminated_Site_List_for_New_Jersey_1',
+            pane: 'pane_Known_Contaminated_Site_List_for_New_Jersey_1',
+            onEachFeature: pop_Known_Contaminated_Site_List_for_New_Jersey_1,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Known_Contaminated_Site_List_for_New_Jersey_1_0(feature));
+            },
+        });
+        var cluster_Known_Contaminated_Site_List_for_New_Jersey_1 = new L.MarkerClusterGroup({showCoverageOnHover: false,
+            spiderfyDistanceMultiplier: 2});
+        cluster_Known_Contaminated_Site_List_for_New_Jersey_1.addLayer(layer_Known_Contaminated_Site_List_for_New_Jersey_1);
+
+        bounds_group.addLayer(layer_Known_Contaminated_Site_List_for_New_Jersey_1);
+        cluster_Known_Contaminated_Site_List_for_New_Jersey_1.addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
